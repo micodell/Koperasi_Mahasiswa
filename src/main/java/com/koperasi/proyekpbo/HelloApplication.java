@@ -19,7 +19,6 @@ public class HelloApplication extends Application {
         stage.setTitle("Home Page");
 
 
-
         stage.setScene(scene);
         stage.show();
     }

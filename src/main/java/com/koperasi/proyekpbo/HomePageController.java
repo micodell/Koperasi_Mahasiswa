@@ -75,10 +75,16 @@ public class HomePageController {
                     }
                     case "Role" -> {}
                     case "Pegawai" -> {}
+                    case "Anggota" -> {}
+                    case "Barang" -> {}
+                    case "Kategori" -> {}
+                    case "Transaksi" -> {}
                 }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
+
 }
