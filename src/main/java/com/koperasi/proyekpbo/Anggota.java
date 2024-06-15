@@ -3,7 +3,6 @@ package com.koperasi.proyekpbo;
 public class Anggota {
     private String id_anggota;
     private String nama_anggota;
-
     public Anggota(String id_anggota, String nama_anggota) {
         this.id_anggota = id_anggota;
         this.nama_anggota = nama_anggota;
