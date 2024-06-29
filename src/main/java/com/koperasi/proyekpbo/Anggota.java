@@ -9,11 +9,15 @@ public class Anggota {
         this.nama_anggota = nama_anggota;
     }
 
+    public Anggota() {
+
+    }
+
     public String getId_anggota() {
         return id_anggota;
     }
 
-    public void setId_anggota() {
+    public void setId_anggota(String idAnggota) {
         this.id_anggota = id_anggota;
     }
 

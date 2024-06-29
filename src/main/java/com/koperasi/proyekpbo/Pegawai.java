@@ -9,6 +9,10 @@ public class Pegawai {
         this.nama_pegawai = nama_pegawai;
     }
 
+    public Pegawai() {
+
+    }
+
     public String getId_pegawai() {
         return id_pegawai;
     }

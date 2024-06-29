@@ -11,6 +11,10 @@ public class Role {
         this.jobdesc = jobdesc;
     }
 
+    public Role() {
+
+    }
+
     public String getId_role() {
         return id_role;
     }
