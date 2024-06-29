@@ -11,8 +11,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
-public class HomePageController {
+public class HomePageController implements TableMethod {
 
     @FXML
     private Button delete_button;
@@ -31,6 +32,12 @@ public class HomePageController {
     Connection con = null;
     PreparedStatement st = null;
     ResultSet rs = null;
+    Scanner input = new Scanner(System.in);
+    @FXML
+    void make_invisible() throws SQLException {
+        table_view.setVisible(false);
+        insert_into_table("Sesuatu");
+    }
 
     @FXML
     void initialize() {
@@ -53,7 +60,7 @@ public class HomePageController {
         });
     }
 
-    void view_table(String table) throws SQLException {
+    public void view_table(String table) throws SQLException {
         String SQL = "SELECT * FROM " + table;
         con = DBConnection.getConnection();
         try {
@@ -62,6 +69,7 @@ public class HomePageController {
             while (rs.next()) {
                 switch (table) {
                     case "Department" -> {
+                        table = "departments";
                         Department dept = new Department();
                         ObservableList<Department> listOfDept = FXCollections.observableArrayList();
 
@@ -85,6 +93,41 @@ public class HomePageController {
             throw new RuntimeException(e);
         }
     }
+//
+//            stmt.executeUpdate();
+    public void insert_into_table(String table) throws SQLException {
+        con = DBConnection.getConnection();
+        table_view.setVisible(false);
+        try {
+            switch (table) {
+                case "Department" -> {
 
+                    String SQL_dept = """
+                INSERT INTO public."departments" (id_department, name_department)
+                VALUES (?, ?)
+                """;
+                    st = con.prepareStatement(SQL_dept);
 
+                    System.out.println("id department: ");
+                    int id_department = Integer.parseInt(input.nextLine());
+                    System.out.println("nama department: ");
+                    String name_department = input.nextLine();
+
+                    st.setString(1, String.valueOf(id_department));
+                    st.setString(2, name_department);
+
+                    view_table(table);
+                }
+                case "Role" -> {}
+                case "Pegawai" -> {}
+                case "Anggota" -> {}
+                case "Barang" -> {}
+                case "Kategori" -> {}
+                case "Transaksi" -> {}
+            }
+            rs = st.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
