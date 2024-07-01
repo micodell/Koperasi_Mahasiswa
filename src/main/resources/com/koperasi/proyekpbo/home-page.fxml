@@ -29,7 +29,7 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="delete_button" layoutX="477.0" layoutY="597.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="delete">
+      <Button fx:id="delete_button" layoutX="477.0" layoutY="597.0" mnemonicParsing="false" onAction="#onDeleteClicked" prefHeight="26.0" prefWidth="200.0" text="delete">
          <font>
             <Font size="18.0" />
          </font></Button>

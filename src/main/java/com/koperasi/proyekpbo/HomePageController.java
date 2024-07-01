@@ -156,6 +156,41 @@ public class HomePageController implements TableMethod {
     }
 
     @FXML
+    void onDeleteClicked (ActionEvent event) {
+        try {
+            String selected = drop_down_menu.getValue();
+
+            switch (selected) {
+                case "Departments":
+                    update_from_table("Department");
+                    break;
+                case "Roles":
+                    update_from_table("Role");
+                    break;
+                case "Employees":
+                    update_from_table("Pegawai");
+                    break;
+                case "Executives(Anggota)":
+                    update_from_table("Anggota");
+                    break;
+                case "Stocks(Barang)":
+                    update_from_table("Barang");
+                    break;
+                case "Categories(Kategori)":
+                    update_from_table("Kategori");
+                    break;
+                case "Transactions":
+                    update_from_table("Transaksi");
+                    break;
+                default:
+                    System.out.println("Pilih tabel terlebih dahulu untuk melakukan update.");
+            }
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+    }
+
+    @FXML
     void onTableSelectionChanged() {
         String selectedTable = drop_down_menu.getValue();
         updateFieldsVisibility(selectedTable);
