@@ -12,17 +12,17 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="700.0" prefHeight="650.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.koperasi.proyekpbo.HomePageController">
    <children>
-      <ComboBox fx:id="drop_down_menu" layoutX="28.0" layoutY="24.0" prefHeight="25.0" prefWidth="187.0" promptText="Pilih Tabel" visibleRowCount="7" />
+      <ComboBox fx:id="drop_down_menu" layoutX="28.0" layoutY="24.0" prefHeight="25.0" prefWidth="200.0" promptText="Pilih Tabel" style="-fx-border-color: darkgrey; -fx-background-color: lighgrey;" visibleRowCount="7" />
       <Separator prefHeight="4.0" prefWidth="660.0" />
-      <Button fx:id="insert_button" layoutX="477.0" layoutY="492.0" mnemonicParsing="false" onAction="#onInsertClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #29A746;" text="insert" textFill="WHITE">
+      <Button fx:id="insert_button" layoutX="477.0" layoutY="492.0" mnemonicParsing="false" onAction="#onInsertClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-border-color: darkgrey; -fx-background-color: #29A746;" text="insert" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="update_button" layoutX="477.0" layoutY="545.0" mnemonicParsing="false" onAction="#onUpdateClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #FDC108;" text="update">
+      <Button fx:id="update_button" layoutX="477.0" layoutY="545.0" mnemonicParsing="false" onAction="#onUpdateClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-border-color: darkgrey; -fx-background-color: #FDC108;" text="update">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="delete_button" layoutX="477.0" layoutY="597.0" mnemonicParsing="false" onAction="#onDeleteClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #D93643;" text="delete" textFill="WHITE">
+      <Button fx:id="delete_button" layoutX="477.0" layoutY="597.0" mnemonicParsing="false" onAction="#onDeleteClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-border-color: darkgrey; -fx-background-color: #D93643;" text="delete" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font></Button>
@@ -36,7 +36,7 @@
       <TextField fx:id="textField3" layoutX="158.0" layoutY="563.0" prefHeight="25.0" prefWidth="300.0" visible="false" />
       <TextField fx:id="textField4" layoutX="158.0" layoutY="597.0" prefHeight="6.0" prefWidth="300.0" visible="false" />
       <TextField fx:id="textField5" layoutX="158.0" layoutY="631.0" prefHeight="6.0" prefWidth="300.0" visible="false" />
-      <Button fx:id="exit_button" layoutX="477.0" layoutY="648.0" mnemonicParsing="false" onAction="#onExitClicked" prefHeight="26.0" prefWidth="200.0" text="exit">
+      <Button fx:id="exit_button" layoutX="477.0" layoutY="648.0" mnemonicParsing="false" onAction="#onExitClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-border-color: darkgrey;" text="exit">
          <font>
             <Font size="14.0" />
          </font></Button>
@@ -55,9 +55,9 @@
       </TableView>
       <TableView fx:id="table_view_dept" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
          <columns>
-            <TableColumn fx:id="idColumn" prefWidth="220.0" text="id_department" />
-            <TableColumn fx:id="nameColumn" prefWidth="220.0" text="name_department" />
-            <TableColumn fx:id="jobDescColumn" prefWidth="220.0" text="jobdesc" />
+            <TableColumn fx:id="id_department_column" prefWidth="220.0" text="id_department" />
+            <TableColumn fx:id="name_department_column" prefWidth="220.0" text="name_department" />
+            <TableColumn fx:id="jobDesc_column" prefWidth="220.0" text="jobdesc" />
          </columns>
       </TableView>
       <TableView fx:id="table_view_role" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">

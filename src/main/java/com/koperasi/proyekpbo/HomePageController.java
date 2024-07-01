@@ -24,16 +24,21 @@ public class HomePageController implements TableMethod {
     @FXML
     private TableView<DataType> table_view_dept;
     @FXML
-    private TableColumn<Department, Integer> idColumn;
+    private TableColumn<Department, Integer> id_department_column;
     @FXML
-    private TableColumn<Department, String> nameColumn;
+    private TableColumn<Department, String> name_department_column;
     @FXML
-    private TableColumn<Department, String> jobDescColumn;
+    private TableColumn<Department, String> jobDesc_column;
 
     @FXML
     private TableView<DataType> table_view_role;
     @FXML
-    private TableView<Pegawai> table_view_emp;
+    private TableView<DataType> table_view_emp;
+    @FXML
+    private TableColumn<Pegawai, Integer> id_pegawai_column;
+    @FXML
+    private TableColumn<Pegawai, String> nama_pegawai_column;
+
     @FXML
     private TableView<Anggota> table_view_anggota;
     @FXML
@@ -66,7 +71,7 @@ public class HomePageController implements TableMethod {
 //        insert_into_table(drop_down_menu.getValue());
 //    }
 
-    private ObservableList<DataType> data;
+//    private ObservableList<DataType> data;
     @FXML
     void initialize() {
         drop_down_menu.setItems(
@@ -85,28 +90,10 @@ public class HomePageController implements TableMethod {
             if (newValue != null) {
                 System.out.println("Selected value: " + newValue);
                 try {
-                    updateFieldsVisibility(newValue); // to call updateFieldsVisibility with newValue
+                    updateFieldsVisibility(newValue);
+                    view_table(newValue);
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                data = FXCollections.observableArrayList();
-                switch (newValue) {
-                    case "Departments" -> {
-                        table_view_dept.setItems(data);
-                        try {
-                            view_table(newValue);
-                        } catch (SQLException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                    case "Roles" -> {
-                        table_view_role.setItems(data);
-                        try {
-                            view_table(newValue);
-                        } catch (SQLException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
+                    e.printStackTrace();
                 }
             }
         });
@@ -362,20 +349,22 @@ public class HomePageController implements TableMethod {
     }
 
     public ObservableList<DataType> view_table(String table) throws SQLException {
+        ObservableList<DataType> data = FXCollections.observableArrayList();
+
         String SQL = "SELECT * FROM " + table;
-        con = DBConnection.getConnection();
-        st = con.prepareStatement(SQL);
-        rs = st.executeQuery();
         try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement st = con.prepareStatement(SQL);
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 switch (table) {
                     case "Departments" -> {
                         data.add(new Department(rs.getInt("id_department"),rs.getString("name_department"),rs.getString("jobdesc")));
                         ObservableList<DataType> departmentObservableList = view_table(table);
                         table_view_dept.setItems(departmentObservableList);
-                        idColumn.setCellValueFactory(new PropertyValueFactory<>("id_department"));
-                        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name_department"));
-                        jobDescColumn.setCellValueFactory(new PropertyValueFactory<>("jobdesc"));
+                        id_department_column.setCellValueFactory(new PropertyValueFactory<>("id_department"));
+                        name_department_column.setCellValueFactory(new PropertyValueFactory<>("name_department"));
+                        jobDesc_column.setCellValueFactory(new PropertyValueFactory<>("jobdesc"));
                     }
 
                     case "Role" -> {
@@ -385,7 +374,13 @@ public class HomePageController implements TableMethod {
                         role.setId_department(rs.getInt("id_department"));
                         data.add(role);
                     }
-                    case "Pegawai" -> data.add(new Pegawai(rs.getInt("id_pegawai"),rs.getString("nama_pegawai")));
+                    case "Pegawai" -> {
+                        data.add(new Pegawai(rs.getInt("id_pegawai"), rs.getString("nama_pegawai")));
+                        ObservableList<DataType> pegawaiObservableList = view_table(table);
+                        table_view_emp.setItems(pegawaiObservableList);
+                        id_pegawai_column.setCellValueFactory(new PropertyValueFactory<>("id_pegawai"));
+                        nama_pegawai_column.setCellValueFactory(new PropertyValueFactory<>("nama_pegawai"));
+                    }
                     case "Transaksi" -> {
                         Transaksi transaksi = new Transaksi();
                         ObservableList<Transaksi> listOfTransaction = FXCollections.observableArrayList();

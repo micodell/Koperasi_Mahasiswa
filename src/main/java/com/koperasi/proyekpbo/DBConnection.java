@@ -23,7 +23,7 @@ public class DBConnection {
         return DriverManager.getConnection(JDBC_URL, USER, PASSWORD);
     }
 
-    public static void main(String[] args) throws SQLException {
-        getConnection();
-    }
+//    public static void main(String[] args) throws SQLException {
+//        getConnection();
+//    }
 }
