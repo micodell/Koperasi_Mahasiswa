@@ -22,13 +22,13 @@ public class Test {
                         Department dept = new Department();
                         ObservableList<Department> listOfDept = FXCollections.observableArrayList();
 
-                        dept.setId_department(rs.getString("department_id"));
+                        dept.setId_department(rs.getInt("department_id"));
 //                        untuk mengambil value dari table yang kita query
                         dept.setName_department(rs.getString("department_name"));
                         listOfDept.add(dept);
                         for (int i = 0; i < listOfDept.size(); i++) {
                             System.out.println(listOfDept.get(i).getId_department() +
-                                    " " + listOfDept.get(i).getName_department());
+                                    "\t\t" + listOfDept.get(i).getName_department());
                         }
                     }
                     case "Role" -> {}

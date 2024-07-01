@@ -12,18 +12,20 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="700.0" prefHeight="650.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.koperasi.proyekpbo.HomePageController">
    <children>
-      <TableView fx:id="table_view" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="650.0">
-        <columns>
-          <TableColumn prefWidth="163.6666717529297" text="C1" />
-          <TableColumn minWidth="0.0" prefWidth="177.33331298828125" text="C2" />
-        </columns>
+      <TableView fx:id="table_view_awal" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0">
+         <columns>
+            <TableColumn prefWidth="220.0" text=" " />
+            <TableColumn prefWidth="220.0" text=" " />
+            <TableColumn prefWidth="220.0" text=" " />
+            <TableColumn prefWidth="220.0" text=" " />
+         </columns>
       </TableView>
       <ComboBox fx:id="drop_down_menu" layoutX="28.0" layoutY="24.0" prefHeight="25.0" prefWidth="187.0" promptText="Pilih Tabel" visibleRowCount="7" />
-      <Button fx:id="insert_button" layoutX="477.0" layoutY="492.0" mnemonicParsing="false" onAction="#make_invisible" prefHeight="26.0" prefWidth="200.0" text="insert">
+      <Button fx:id="insert_button" layoutX="477.0" layoutY="492.0" mnemonicParsing="false" onAction="#onInsertClicked" prefHeight="26.0" prefWidth="200.0" text="insert">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="update_button" layoutX="477.0" layoutY="545.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="update">
+      <Button fx:id="update_button" layoutX="477.0" layoutY="545.0" mnemonicParsing="false" onAction="#onUpdateClicked" prefHeight="26.0" prefWidth="200.0" text="update">
          <font>
             <Font size="18.0" />
          </font></Button>
@@ -51,5 +53,55 @@
             <Font size="16.0" />
          </font>
       </Label>
+      <TableView fx:id="table_view_dept" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
+         <columns>
+            <TableColumn fx:id="idColumn" prefWidth="220.0" text="id_department" />
+            <TableColumn fx:id="nameColumn" prefWidth="220.0" text="name_department" />
+            <TableColumn fx:id="jobDescColumn" prefWidth="220.0" text="jobdesc" />
+         </columns>
+      </TableView>
+      <TableView fx:id="table_view_role" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
+         <columns>
+            <TableColumn prefWidth="165.0" text="id_role" />
+            <TableColumn prefWidth="165.0" text="name_role" />
+            <TableColumn prefWidth="165.0" text="date_start" />
+            <TableColumn prefWidth="165.0" text="date_end" />
+         </columns>
+      </TableView>
+      <TableView fx:id="table_view_emp" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
+         <columns>
+            <TableColumn prefWidth="330.0" text="id_pegawai" />
+            <TableColumn prefWidth="330.0" text="nama_pegawai" />
+         </columns>
+      </TableView>
+      <TableView fx:id="table_view_anggota" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
+         <columns>
+            <TableColumn prefWidth="330.0" text="id_anggota" />
+            <TableColumn prefWidth="330.0" text="nama_anggota" />
+         </columns>
+      </TableView>
+      <TableView fx:id="table_view_barang" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
+         <columns>
+            <TableColumn prefWidth="132.0" text="id_barang" />
+            <TableColumn prefWidth="132.0" text="nama_barang" />
+            <TableColumn prefWidth="132.0" text="stock_barang" />
+            <TableColumn prefWidth="132.0" text="harga_barang" />
+            <TableColumn prefWidth="132.0" text="harga_jual" />
+         </columns>
+      </TableView>
+      <TableView fx:id="table_view_kategori" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
+         <columns>
+            <TableColumn prefWidth="330.0" text="id_kategori" />
+            <TableColumn prefWidth="330.0" text="nama_kategori" />
+         </columns>
+      </TableView>
+      <TableView fx:id="table_view_trans" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
+         <columns>
+            <TableColumn prefWidth="165.0" text="id_transaksi" />
+            <TableColumn prefWidth="165.0" text="tanggal_transaksi" />
+            <TableColumn prefWidth="165.0" text="nama_seller" />
+            <TableColumn prefWidth="165.0" text="profit_total" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

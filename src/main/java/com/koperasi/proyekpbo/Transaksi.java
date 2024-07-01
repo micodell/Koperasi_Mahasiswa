@@ -1,12 +1,12 @@
 package com.koperasi.proyekpbo;
 
 public class Transaksi {
-    private String id_transaksi;
+    private int id_transaksi;
     private String tanggal_transaksi;
     private String nama_seller;
     private int profit_total;
 
-    public Transaksi(String id_transaksi, String tanggal_transaksi, String nama_seller, int profit_total) {
+    public Transaksi(int id_transaksi, String tanggal_transaksi, String nama_seller, int profit_total) {
         this.id_transaksi = id_transaksi;
         this.tanggal_transaksi = tanggal_transaksi;
         this.nama_seller = nama_seller;
@@ -16,11 +16,11 @@ public class Transaksi {
 
     }
 
-    public String getId_transaksi() {
+    public int getId_transaksi() {
         return id_transaksi;
     }
 
-    public void setId_transaksi(String id_transaksi) {
+    public void setId_transaksi(int id_transaksi) {
         this.id_transaksi = id_transaksi;
     }
 

@@ -1,10 +1,10 @@
 package com.koperasi.proyekpbo;
 
 public class Pegawai {
-    private String id_pegawai;
+    private int id_pegawai;
     private String nama_pegawai;
 
-    public Pegawai(String id_pegawai, String nama_pegawai) {
+    public Pegawai(int id_pegawai, String nama_pegawai) {
         this.id_pegawai = id_pegawai;
         this.nama_pegawai = nama_pegawai;
     }
@@ -13,11 +13,11 @@ public class Pegawai {
 
     }
 
-    public String getId_pegawai() {
+    public int getId_pegawai() {
         return id_pegawai;
     }
 
-    public void setId_pegawai(String id_pegawai) {
+    public void setId_pegawai(int id_pegawai) {
         this.id_pegawai = id_pegawai;
     }
 

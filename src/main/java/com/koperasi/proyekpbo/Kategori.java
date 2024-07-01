@@ -1,10 +1,10 @@
 package com.koperasi.proyekpbo;
 
 public class Kategori {
-    private String id_kategori;
+    private int id_kategori;
     private String nama_kategori;
 
-    public Kategori(String id_kategori, String nama_kategori) {
+    public Kategori(int id_kategori, String nama_kategori) {
         this.id_kategori = id_kategori;
         this.nama_kategori = nama_kategori;
     }
@@ -12,11 +12,11 @@ public class Kategori {
 
     }
 
-    public String getId_kategori() {
+    public int getId_kategori() {
         return id_kategori;
     }
 
-    public void setId_kategori(String id_kategori) {
+    public void setId_kategori(int id_kategori) {
         this.id_kategori = id_kategori;
     }
 

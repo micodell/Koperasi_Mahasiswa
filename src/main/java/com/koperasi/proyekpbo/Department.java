@@ -1,10 +1,10 @@
 package com.koperasi.proyekpbo;
 
 public class Department {
-    private String id_department;
+    private int id_department;
     private String name_department;
 
-    public Department(String id_department, String name_department) {
+    public Department(int id_department, String name_department) {
         this.id_department = id_department;
         this.name_department = name_department;
     }
@@ -13,11 +13,11 @@ public class Department {
 
     }
 
-    public String getId_department() {
+    public int getId_department() {
         return id_department;
     }
 
-    public void setId_department(String id_department) {
+    public void setId_department(int id_department) {
         this.id_department = id_department;
     }
 
