@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="700.0" prefHeight="650.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.koperasi.proyekpbo.HomePageController">
+   <children>
+      <TableView fx:id="table_view" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="650.0">
+        <columns>
+          <TableColumn prefWidth="163.6666717529297" text="C1" />
+          <TableColumn minWidth="0.0" prefWidth="177.33331298828125" text="C2" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="drop_down_menu" layoutX="28.0" layoutY="24.0" prefHeight="25.0" prefWidth="187.0" promptText="Pilih Tabel" visibleRowCount="7" />
+      <Button fx:id="insert_button" layoutX="477.0" layoutY="492.0" mnemonicParsing="false" onAction="#make_invisible" prefHeight="26.0" prefWidth="200.0" text="insert">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="update_button" layoutX="477.0" layoutY="545.0" mnemonicParsing="false" onAction="#onUpdateClicked" prefHeight="26.0" prefWidth="200.0" text="update">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="delete_button" layoutX="477.0" layoutY="597.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="delete">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Separator layoutX="20.0" layoutY="62.0" prefHeight="4.0" prefWidth="660.0" />
+      <Label fx:id="label1" layoutX="31.0" layoutY="497.0" prefHeight="17.0" prefWidth="105.0" text="" />
+      <Label fx:id="label2" layoutX="29.0" layoutY="531.0" prefHeight="17.0" prefWidth="105.0" text="" />
+      <Label fx:id="label3" layoutX="28.0" layoutY="566.0" prefHeight="17.0" prefWidth="105.0" text="" />
+      <Label fx:id="label4" layoutX="29.0" layoutY="599.0" prefHeight="17.0" prefWidth="105.0" text="" />
+      <Label fx:id="label5" layoutX="29.0" layoutY="631.0" prefHeight="17.0" prefWidth="105.0" text="" />
+      <TextField fx:id="textField1" layoutX="158.0" layoutY="494.0" prefHeight="25.0" prefWidth="300.0" visible="false" />
+      <TextField fx:id="textField2" layoutX="158.0" layoutY="528.0" prefHeight="25.0" prefWidth="300.0" visible="false" />
+      <TextField fx:id="textField3" layoutX="158.0" layoutY="563.0" prefHeight="25.0" prefWidth="300.0" visible="false" />
+      <TextField fx:id="textField4" layoutX="158.0" layoutY="597.0" prefHeight="6.0" prefWidth="300.0" visible="false" />
+      <TextField fx:id="textField5" layoutX="158.0" layoutY="631.0" prefHeight="6.0" prefWidth="300.0" visible="false" />
+      <Button layoutX="477.0" layoutY="648.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="exit">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Label fx:id="pesan_awal" layoutX="34.0" layoutY="557.0" prefHeight="40.0" prefWidth="420.0" text="*Mohon untuk pilih tabel terlebih dahulu untuk edit data*">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
