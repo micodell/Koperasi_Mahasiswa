@@ -1,6 +1,6 @@
 package com.koperasi.proyekpbo;
 
-public class Barang {
+public class Barang implements DataType{
     private int id_barang;
     private String nama_barang;
     private int harga_pokok;
@@ -16,7 +16,8 @@ public class Barang {
 
     }
 
-    public int getId_barang() {
+    @Override
+    public int getId() {
         return id_barang;
     }
 

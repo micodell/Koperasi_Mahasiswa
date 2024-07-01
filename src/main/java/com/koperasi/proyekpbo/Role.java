@@ -1,21 +1,22 @@
 package com.koperasi.proyekpbo;
 
-public class Role {
+public class Role implements DataType{
     private int id_role;
     private String name_role;
-    private String jobdesc;
+    private int id_department;
 
     public Role(int id_role, String name_role, String jobdesc) {
         this.id_role = id_role;
         this.name_role = name_role;
-        this.jobdesc = jobdesc;
+        this.id_department = id_department;
     }
 
     public Role() {
 
     }
 
-    public int getId_role() {
+    @Override
+    public int getId() {
         return id_role;
     }
 
@@ -31,11 +32,11 @@ public class Role {
         this.name_role = name_role;
     }
 
-    public String getJobdesc() {
-        return jobdesc;
+    public int getId_department() {
+        return id_department;
     }
 
-    public void setJobdesc(String jobdesc) {
-        this.jobdesc = jobdesc;
+    public void setId_department(int id_department) {
+        this.id_department = id_department;
     }
 }

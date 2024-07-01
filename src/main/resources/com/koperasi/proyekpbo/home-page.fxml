@@ -12,28 +12,20 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="700.0" prefHeight="650.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.koperasi.proyekpbo.HomePageController">
    <children>
-      <TableView fx:id="table_view_awal" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0">
-         <columns>
-            <TableColumn prefWidth="220.0" text=" " />
-            <TableColumn prefWidth="220.0" text=" " />
-            <TableColumn prefWidth="220.0" text=" " />
-            <TableColumn prefWidth="220.0" text=" " />
-         </columns>
-      </TableView>
       <ComboBox fx:id="drop_down_menu" layoutX="28.0" layoutY="24.0" prefHeight="25.0" prefWidth="187.0" promptText="Pilih Tabel" visibleRowCount="7" />
-      <Button fx:id="insert_button" layoutX="477.0" layoutY="492.0" mnemonicParsing="false" onAction="#onInsertClicked" prefHeight="26.0" prefWidth="200.0" text="insert">
+      <Separator prefHeight="4.0" prefWidth="660.0" />
+      <Button fx:id="insert_button" layoutX="477.0" layoutY="492.0" mnemonicParsing="false" onAction="#onInsertClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #29A746;" text="insert" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="update_button" layoutX="477.0" layoutY="545.0" mnemonicParsing="false" onAction="#onUpdateClicked" prefHeight="26.0" prefWidth="200.0" text="update">
+      <Button fx:id="update_button" layoutX="477.0" layoutY="545.0" mnemonicParsing="false" onAction="#onUpdateClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #FDC108;" text="update">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="delete_button" layoutX="477.0" layoutY="597.0" mnemonicParsing="false" onAction="#onDeleteClicked" prefHeight="26.0" prefWidth="200.0" text="delete">
+      <Button fx:id="delete_button" layoutX="477.0" layoutY="597.0" mnemonicParsing="false" onAction="#onDeleteClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #D93643;" text="delete" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Separator layoutX="20.0" layoutY="62.0" prefHeight="4.0" prefWidth="660.0" />
       <Label fx:id="label1" layoutX="31.0" layoutY="497.0" prefHeight="17.0" prefWidth="105.0" text="" />
       <Label fx:id="label2" layoutX="29.0" layoutY="531.0" prefHeight="17.0" prefWidth="105.0" text="" />
       <Label fx:id="label3" layoutX="28.0" layoutY="566.0" prefHeight="17.0" prefWidth="105.0" text="" />
@@ -44,7 +36,7 @@
       <TextField fx:id="textField3" layoutX="158.0" layoutY="563.0" prefHeight="25.0" prefWidth="300.0" visible="false" />
       <TextField fx:id="textField4" layoutX="158.0" layoutY="597.0" prefHeight="6.0" prefWidth="300.0" visible="false" />
       <TextField fx:id="textField5" layoutX="158.0" layoutY="631.0" prefHeight="6.0" prefWidth="300.0" visible="false" />
-      <Button layoutX="477.0" layoutY="648.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="exit">
+      <Button fx:id="exit_button" layoutX="477.0" layoutY="648.0" mnemonicParsing="false" onAction="#onExitClicked" prefHeight="26.0" prefWidth="200.0" text="exit">
          <font>
             <Font size="14.0" />
          </font></Button>
@@ -53,6 +45,14 @@
             <Font size="16.0" />
          </font>
       </Label>
+      <TableView fx:id="table_view_awal" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0">
+         <columns>
+            <TableColumn prefWidth="220.0" text=" " />
+            <TableColumn prefWidth="220.0" text=" " />
+            <TableColumn prefWidth="220.0" text=" " />
+            <TableColumn prefWidth="220.0" text=" " />
+         </columns>
+      </TableView>
       <TableView fx:id="table_view_dept" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
          <columns>
             <TableColumn fx:id="idColumn" prefWidth="220.0" text="id_department" />

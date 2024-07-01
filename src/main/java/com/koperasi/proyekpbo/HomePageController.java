@@ -1,10 +1,12 @@
 package com.koperasi.proyekpbo;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,26 +22,31 @@ public class HomePageController implements TableMethod {
     @FXML
     private TableView<Department> table_view_awal;
     @FXML
-    private TableView<Object> table_view_dept;
+    private TableView<DataType> table_view_dept;
     @FXML
-    private TableView<Object> table_view_role;
+    private TableColumn<Department, Integer> idColumn;
     @FXML
-    private TableView<Object> table_view_emp;
+    private TableColumn<Department, String> nameColumn;
     @FXML
-    private TableView<Object> table_view_anggota;
+    private TableColumn<Department, String> jobDescColumn;
+
     @FXML
-    private TableView<Object> table_view_barang;
+    private TableView<DataType> table_view_role;
     @FXML
-    private TableView<Object> table_view_kategori;
+    private TableView<Pegawai> table_view_emp;
     @FXML
-    private TableView<Object> table_view_trans;
+    private TableView<Anggota> table_view_anggota;
+    @FXML
+    private TableView<Barang> table_view_barang;
+    @FXML
+    private TableView<Kategori> table_view_kategori;
+    @FXML
+    private TableView<Transaksi> table_view_trans;
 
     @FXML
     private Button insert_button;
-
     @FXML
     private Button update_button;
-
     @FXML
     private Button delete_button;
 
@@ -59,6 +66,7 @@ public class HomePageController implements TableMethod {
 //        insert_into_table(drop_down_menu.getValue());
 //    }
 
+    private ObservableList<DataType> data;
     @FXML
     void initialize() {
         drop_down_menu.setItems(
@@ -76,7 +84,30 @@ public class HomePageController implements TableMethod {
         drop_down_menu.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
             if (newValue != null) {
                 System.out.println("Selected value: " + newValue);
-                updateFieldsVisibility(newValue); // Call to updateFieldsVisibility with newValue
+                try {
+                    updateFieldsVisibility(newValue); // to call updateFieldsVisibility with newValue
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                data = FXCollections.observableArrayList();
+                switch (newValue) {
+                    case "Departments" -> {
+                        table_view_dept.setItems(data);
+                        try {
+                            view_table(newValue);
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    case "Roles" -> {
+                        table_view_role.setItems(data);
+                        try {
+                            view_table(newValue);
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
             }
         });
 
@@ -191,12 +222,17 @@ public class HomePageController implements TableMethod {
     }
 
     @FXML
-    void onTableSelectionChanged() {
-        String selectedTable = drop_down_menu.getValue();
-        updateFieldsVisibility(selectedTable);
+    void onExitClicked (ActionEvent event) {
+        Platform.exit();
     }
 
-    private void updateFieldsVisibility(String selectedTable) {
+//    @FXML
+//    void onTableSelectionChanged() throws SQLException {
+//        String selectedTable = drop_down_menu.getValue();
+//        updateFieldsVisibility(selectedTable);
+//    }
+
+    private void updateFieldsVisibility(String selectedTable) throws SQLException {
         pesan_awal.setVisible(true);
         label1.setVisible(false);
         label2.setVisible(false);
@@ -233,6 +269,7 @@ public class HomePageController implements TableMethod {
 
                 table_view_awal.setVisible(false);
                 table_view_dept.setVisible(true);
+                view_table("departments");
             }
             case "Roles" -> {
                 pesan_awal.setVisible(false);
@@ -324,55 +361,31 @@ public class HomePageController implements TableMethod {
         }
     }
 
-    public void view_table(String table) throws SQLException {
+    public ObservableList<DataType> view_table(String table) throws SQLException {
         String SQL = "SELECT * FROM " + table;
         con = DBConnection.getConnection();
+        st = con.prepareStatement(SQL);
+        rs = st.executeQuery();
         try {
-            st = con.prepareStatement(SQL);
-            rs = st.executeQuery();
-
             while (rs.next()) {
                 switch (table) {
                     case "Departments" -> {
-                        Department dept = new Department();
-                        ObservableList<Department> listOfDept = FXCollections.observableArrayList();
-
-                        dept.setId_department(rs.getInt("department_id"));
-//                        untuk mengambil value dari table yang kita query
-                        dept.setName_department(rs.getString("department_name"));
-                        listOfDept.add(dept);
-//                        for (int i = 0; i < listOfDept.size(); i++) {
-//                            System.out.println(listOfDept.get(i).getId_department() +
-//                                    " " + listOfDept.get(i).getName_department());
-//                        }
-//                        table_view_awal.setItems(FXCollections.observableArrayList(listOfDept));
+                        data.add(new Department(rs.getInt("id_department"),rs.getString("name_department"),rs.getString("jobdesc")));
+                        ObservableList<DataType> departmentObservableList = view_table(table);
+                        table_view_dept.setItems(departmentObservableList);
+                        idColumn.setCellValueFactory(new PropertyValueFactory<>("id_department"));
+                        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name_department"));
+                        jobDescColumn.setCellValueFactory(new PropertyValueFactory<>("jobdesc"));
                     }
+
                     case "Role" -> {
                         Role role = new Role();
-                        ObservableList<Role> listOfRole = FXCollections.observableArrayList();
-                        role.setId_role(rs.getInt("role_id"));
-                        role.setName_role(rs.getString("role_name"));
-                        role.setJobdesc(rs.getString("job_desc"));
-                        listOfRole.add(role);
-//                        for (int i = 0; i < listOfRole.size(); i++) {
-//                            System.out.println(listOfRole.get(i).getId_role() +
-//                                    " " + listOfRole.get(i).getName_role() +
-//                                    " " + listOfRole.get(i).getJobdesc());
-//                        }
-//                        table_view_awal.setItems(FXCollections.observableArrayList());
+                        role.setId_role(rs.getInt("id_role"));
+                        role.setName_role(rs.getString("name_role"));
+                        role.setId_department(rs.getInt("id_department"));
+                        data.add(role);
                     }
-                    case "Pegawai" -> {
-                        Pegawai pegawai = new Pegawai();
-                        ObservableList<Pegawai> listOfEmployees = FXCollections.observableArrayList();
-                        pegawai.setId_pegawai(rs.getInt("employee_id"));
-                        pegawai.setNama_pegawai(rs.getString("employee_name"));
-                        listOfEmployees.add(pegawai);
-//                        for (int i = 0; i < listOfEmployees.size(); i++) {
-//                            System.out.println(listOfEmployees.get(i).getId_pegawai() +
-//                                    " " + listOfEmployees.get(i).getNama_pegawai());
-//                        }
-//                        table_view_awal.setItems(FXCollections.observableArrayList());
-                    }
+                    case "Pegawai" -> data.add(new Pegawai(rs.getInt("id_pegawai"),rs.getString("nama_pegawai")));
                     case "Transaksi" -> {
                         Transaksi transaksi = new Transaksi();
                         ObservableList<Transaksi> listOfTransaction = FXCollections.observableArrayList();
@@ -430,7 +443,7 @@ public class HomePageController implements TableMethod {
 //                        table_view_anggota.setItems(FXCollections.observableArrayList());
                     }
                 }
-            }
+            } return data;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

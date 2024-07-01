@@ -1,6 +1,6 @@
 package com.koperasi.proyekpbo;
 
-public class Kategori {
+public class Kategori implements DataType{
     private int id_kategori;
     private String nama_kategori;
 
@@ -12,7 +12,8 @@ public class Kategori {
 
     }
 
-    public int getId_kategori() {
+    @Override
+    public int getId() {
         return id_kategori;
     }
 

@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 public class Test {
     static void view_table(String table) throws SQLException {
@@ -22,12 +21,12 @@ public class Test {
                         Department dept = new Department();
                         ObservableList<Department> listOfDept = FXCollections.observableArrayList();
 
-                        dept.setId_department(rs.getInt("department_id"));
+                        dept.setId_department(rs.getInt("id_department"));
 //                        untuk mengambil value dari table yang kita query
-                        dept.setName_department(rs.getString("department_name"));
+                        dept.setName_department(rs.getString("name_department"));
                         listOfDept.add(dept);
                         for (int i = 0; i < listOfDept.size(); i++) {
-                            System.out.println(listOfDept.get(i).getId_department() +
+                            System.out.println(listOfDept.get(i).getId() +
                                     "\t\t" + listOfDept.get(i).getName_department());
                         }
                     }
@@ -41,7 +40,7 @@ public class Test {
     }
 
     public static void main(String[] args) throws SQLException {
-        view_table("departments");
+//        view_table("departments");
     }
 
 }

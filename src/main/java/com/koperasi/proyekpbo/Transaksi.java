@@ -1,6 +1,6 @@
 package com.koperasi.proyekpbo;
 
-public class Transaksi {
+public class Transaksi implements DataType{
     private int id_transaksi;
     private String tanggal_transaksi;
     private String nama_seller;
@@ -16,7 +16,8 @@ public class Transaksi {
 
     }
 
-    public int getId_transaksi() {
+    @Override
+    public int getId() {
         return id_transaksi;
     }
 

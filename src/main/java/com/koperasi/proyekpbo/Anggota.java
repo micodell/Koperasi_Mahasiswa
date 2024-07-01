@@ -1,6 +1,6 @@
 package com.koperasi.proyekpbo;
 
-public class Anggota {
+public class Anggota implements DataType{
     private int id_anggota;
     private String nama_anggota;
 
@@ -13,7 +13,8 @@ public class Anggota {
 
     }
 
-    public int getId_anggota() {
+    @Override
+    public int getId() {
         return id_anggota;
     }
 
