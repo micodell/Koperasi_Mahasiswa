@@ -1,19 +1,23 @@
 package com.koperasi.proyekpbo;
 
 public class Anggota {
-    private String id_anggota;
+    private int id_anggota;
     private String nama_anggota;
 
-    public Anggota(String id_anggota, String nama_anggota) {
+    public Anggota(int id_anggota, String nama_anggota) {
         this.id_anggota = id_anggota;
         this.nama_anggota = nama_anggota;
     }
 
-    public String getId_anggota() {
+    public Anggota(){
+
+    }
+
+    public int getId_anggota() {
         return id_anggota;
     }
 
-    public void setId_anggota() {
+    public void setId_anggota(int id_anggota) {
         this.id_anggota = id_anggota;
     }
 
