@@ -80,9 +80,9 @@ public class HomePageController implements TableMethod {
             }
         });
 
-        insert_button.setOnAction(this::onUpdateClicked);
+        insert_button.setOnAction(this::onInsertClicked);
         update_button.setOnAction(this::onUpdateClicked);
-        delete_button.setOnAction(this::onUpdateClicked);
+        delete_button.setOnAction(this::onDeleteClicked);
     }
 
     @FXML
