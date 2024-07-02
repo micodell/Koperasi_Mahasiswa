@@ -25,10 +25,10 @@ public class Test {
 //                        untuk mengambil value dari table yang kita query
                         dept.setName_department(rs.getString("name_department"));
                         listOfDept.add(dept);
-                        for (int i = 0; i < listOfDept.size(); i++) {
-                            System.out.println(listOfDept.get(i).getId() +
-                                    "\t\t" + listOfDept.get(i).getName_department());
-                        }
+//                        for (int i = 0; i < listOfDept.size(); i++) {
+//                            System.out.println(listOfDept.get(i).getId() +
+//                                    "\t\t" + listOfDept.get(i).getName_department());
+//                        }
                     }
                     case "Role" -> {}
                     case "Pegawai" -> {}

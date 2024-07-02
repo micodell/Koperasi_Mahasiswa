@@ -1,12 +1,14 @@
 package com.koperasi.proyekpbo;
 
 import javafx.application.Platform;
+import javafx.beans.binding.ObjectExpression;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +24,7 @@ public class HomePageController implements TableMethod {
     @FXML
     private TableView<Department> table_view_awal;
     @FXML
-    private TableView<DataType> table_view_dept;
+    private TableView<Department> table_view_dept;
     @FXML
     private TableColumn<Department, Integer> id_department_column;
     @FXML
@@ -31,9 +33,16 @@ public class HomePageController implements TableMethod {
     private TableColumn<Department, String> jobDesc_column;
 
     @FXML
-    private TableView<DataType> table_view_role;
+    private TableView<Role> table_view_role;
     @FXML
-    private TableView<DataType> table_view_emp;
+    private TableColumn<Role, Integer> id_department_role_column;
+    @FXML
+    private TableColumn<Role, String> name_role_column;
+    @FXML
+    private TableColumn<Role, Integer> id_role_column;
+
+    @FXML
+    private TableView<Pegawai> table_view_emp;
     @FXML
     private TableColumn<Pegawai, Integer> id_pegawai_column;
     @FXML
@@ -61,10 +70,24 @@ public class HomePageController implements TableMethod {
     @FXML
     private TextField textField1, textField2, textField3, textField4, textField5;
 
+    private Stage stage;
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     Connection con = null;
     PreparedStatement st = null;
     ResultSet rs = null;
     Scanner input = new Scanner(System.in);
+
+    Integer id_selected = null;
+
+
 //    @FXML
 //    void make_invisible() throws SQLException {
 //        table_view.setVisible(false);
@@ -98,6 +121,15 @@ public class HomePageController implements TableMethod {
             }
         });
 
+        table_view_dept.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                textField1.setText(String.valueOf(newValue.getId_department()));
+                textField2.setText(newValue.getName_department());
+                textField3.setText(newValue.getJobdesc());
+                id_selected = newValue.getId_department();
+            }
+        });
+
         insert_button.setOnAction(this::onInsertClicked);
         update_button.setOnAction(this::onUpdateClicked);
         delete_button.setOnAction(this::onDeleteClicked);
@@ -110,25 +142,25 @@ public class HomePageController implements TableMethod {
 
             switch (selected) {
                 case "Departments":
-                    update_from_table("Department");
+                    insert_into_table("Departments");
                     break;
                 case "Roles":
-                    update_from_table("Role");
+                    insert_into_table("Role");
                     break;
                 case "Employees":
-                    update_from_table("Pegawai");
+                    insert_into_table("Pegawai");
                     break;
                 case "Executives(Anggota)":
-                    update_from_table("Anggota");
+                    insert_into_table("Anggota");
                     break;
                 case "Stocks(Barang)":
-                    update_from_table("Barang");
+                    insert_into_table("Barang");
                     break;
                 case "Categories(Kategori)":
-                    update_from_table("Kategori");
+                    insert_into_table("Kategori");
                     break;
                 case "Transactions":
-                    update_from_table("Transaksi");
+                    insert_into_table("Transaksi");
                     break;
                 default:
                     System.out.println("Pilih tabel terlebih dahulu untuk melakukan insert.");
@@ -145,7 +177,7 @@ public class HomePageController implements TableMethod {
 
             switch (selected) {
                 case "Departments":
-                    update_from_table("Department");
+                    update_from_table("Departments");
                     break;
                 case "Roles":
                     update_from_table("Role");
@@ -180,25 +212,25 @@ public class HomePageController implements TableMethod {
 
             switch (selected) {
                 case "Departments":
-                    update_from_table("Department");
+                    delete_from_table("Departments");
                     break;
                 case "Roles":
-                    update_from_table("Role");
+                    delete_from_table("Role");
                     break;
                 case "Employees":
-                    update_from_table("Pegawai");
+                    delete_from_table("Pegawai");
                     break;
                 case "Executives(Anggota)":
-                    update_from_table("Anggota");
+                    delete_from_table("Anggota");
                     break;
                 case "Stocks(Barang)":
-                    update_from_table("Barang");
+                    delete_from_table("Barang");
                     break;
                 case "Categories(Kategori)":
-                    update_from_table("Kategori");
+                    delete_from_table("Kategori");
                     break;
                 case "Transactions":
-                    update_from_table("Transaksi");
+                    delete_from_table("Transaksi");
                     break;
                 default:
                     System.out.println("Pilih tabel terlebih dahulu untuk melakukan update.");
@@ -269,6 +301,8 @@ public class HomePageController implements TableMethod {
 
                 table_view_awal.setVisible(false);
                 table_view_role.setVisible(true);
+
+                view_table("Roles");
             }
             case "Employees" -> {
                 pesan_awal.setVisible(false);
@@ -348,47 +382,62 @@ public class HomePageController implements TableMethod {
         }
     }
 
-    public ObservableList<DataType> view_table(String table) throws SQLException {
-        ObservableList<DataType> data = FXCollections.observableArrayList();
+    public ObservableList<Department> getDepartment() throws SQLException {
+        ObservableList<Department> list = FXCollections.observableArrayList();
+        Connection con = DBConnection.getConnection();
+        String query = "SELECT * FROM departments";
+        PreparedStatement st = con.prepareStatement(query);
+        ResultSet rs = st.executeQuery();
+        while (rs.next()) {
+            Department department = new Department(rs.getInt("id_department"), rs.getString("name_department"), rs.getString("jobdesc"));
+            list.add(department);
+        }
+        return list;
+    }
 
-        String SQL = "SELECT * FROM " + table;
+    public void view_table(String table) throws SQLException {
+        String query = "SELECT * FROM " + table;
         try {
             Connection con = DBConnection.getConnection();
-            PreparedStatement st = con.prepareStatement(SQL);
+            PreparedStatement st = con.prepareStatement(query);
             ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                switch (table) {
-                    case "Departments" -> {
-                        data.add(new Department(rs.getInt("id_department"),rs.getString("name_department"),rs.getString("jobdesc")));
-                        ObservableList<DataType> departmentObservableList = view_table(table);
-                        table_view_dept.setItems(departmentObservableList);
-                        id_department_column.setCellValueFactory(new PropertyValueFactory<>("id_department"));
-                        name_department_column.setCellValueFactory(new PropertyValueFactory<>("name_department"));
-                        jobDesc_column.setCellValueFactory(new PropertyValueFactory<>("jobdesc"));
-                    }
 
-                    case "Role" -> {
-                        Role role = new Role();
-                        role.setId_role(rs.getInt("id_role"));
-                        role.setName_role(rs.getString("name_role"));
-                        role.setId_department(rs.getInt("id_department"));
-                        data.add(role);
+            switch (table) {
+                case "Departments" -> {
+                    ObservableList<Department> list = getDepartment();
+                    table_view_dept.setItems(list);
+                    id_department_column.setCellValueFactory(new PropertyValueFactory<>("id_department"));
+                    name_department_column.setCellValueFactory(new PropertyValueFactory<>("name_department"));
+                    jobDesc_column.setCellValueFactory(new PropertyValueFactory<>("jobdesc"));
+                }
+
+                case "Roles" -> {
+                    ObservableList<Role> list = FXCollections.observableArrayList();
+                    while (rs.next()) {
+                        System.out.println(rs.getInt("id_role"));
+                        Role role = new Role(rs.getInt("id_role"), rs.getString("name_role"), rs.getInt("id_department"));
+                        list.add(role);
                     }
-                    case "Pegawai" -> {
-                        data.add(new Pegawai(rs.getInt("id_pegawai"), rs.getString("nama_pegawai")));
-                        ObservableList<DataType> pegawaiObservableList = view_table(table);
-                        table_view_emp.setItems(pegawaiObservableList);
-                        id_pegawai_column.setCellValueFactory(new PropertyValueFactory<>("id_pegawai"));
-                        nama_pegawai_column.setCellValueFactory(new PropertyValueFactory<>("nama_pegawai"));
-                    }
-                    case "Transaksi" -> {
-                        Transaksi transaksi = new Transaksi();
-                        ObservableList<Transaksi> listOfTransaction = FXCollections.observableArrayList();
-                        transaksi.setId_transaksi(rs.getInt("transaction_id"));
-                        transaksi.setTanggal_transaksi(rs.getString("transaction_date"));
-                        transaksi.setNama_seller(rs.getString("name_seller"));
-                        transaksi.setProfit_total(rs.getInt("total_profit"));
-                        listOfTransaction.add(transaksi);
+                    table_view_role.setItems(list);
+                    id_role_column.setCellValueFactory(new PropertyValueFactory<>("id_role"));
+                    name_role_column.setCellValueFactory(new PropertyValueFactory<>("name_role"));
+                    id_department_role_column.setCellValueFactory(new PropertyValueFactory<>("id_department"));
+                }
+//                    case "Pegawai" -> {
+////                        data.add(new Pegawai(rs.getInt("id_pegawai"), rs.getString("nama_pegawai")));
+//                        ObservableList<DataType> pegawaiObservableList = view_table(table);
+//                        table_view_emp.setItems(pegawaiObservableList);
+//                        id_pegawai_column.setCellValueFactory(new PropertyValueFactory<>("id_pegawai"));
+//                        nama_pegawai_column.setCellValueFactory(new PropertyValueFactory<>("nama_pegawai"));
+//                    }
+                case "Transaksi" -> {
+                    Transaksi transaksi = new Transaksi();
+                    ObservableList<Transaksi> listOfTransaction = FXCollections.observableArrayList();
+                    transaksi.setId_transaksi(rs.getInt("transaction_id"));
+                    transaksi.setTanggal_transaksi(rs.getString("transaction_date"));
+                    transaksi.setNama_seller(rs.getString("name_seller"));
+                    transaksi.setProfit_total(rs.getInt("total_profit"));
+                    listOfTransaction.add(transaksi);
 //                        for (int i = 0; i < listOfTransaction.size(); i++) {
 //                            System.out.println(listOfTransaction.get(i).getId_transaksi() +
 //                                    " " + listOfTransaction.get(i).getTanggal_transaksi() +
@@ -396,15 +445,15 @@ public class HomePageController implements TableMethod {
 //                                    " " + listOfTransaction.get(i).getProfit_total());
 //                        }
 //                        table_view_awal.setItems(FXCollections.observableArrayList());
-                    }
-                    case "Barang" -> {
-                        Barang brg = new Barang();
-                        ObservableList<Barang> listOfItem = FXCollections.observableArrayList();
-                        brg.setId_barang(rs.getInt("item_id"));
-                        brg.setNama_barang(rs.getString("item_name"));
-                        brg.setHarga_pokok(rs.getInt("harga_pokok"));
-                        brg.setHarga_jual(rs.getInt("harga_jual"));
-                        listOfItem.add(brg);
+                }
+                case "Barang" -> {
+                    Barang brg = new Barang();
+                    ObservableList<Barang> listOfItem = FXCollections.observableArrayList();
+                    brg.setId_barang(rs.getInt("item_id"));
+                    brg.setNama_barang(rs.getString("item_name"));
+                    brg.setHarga_pokok(rs.getInt("harga_pokok"));
+                    brg.setHarga_jual(rs.getInt("harga_jual"));
+                    listOfItem.add(brg);
 //                        for (int i = 0; i < listOfItem.size(); i++) {
 //                            System.out.println(listOfItem.get(i).getId_barang() +
 //                                    " " + listOfItem.get(i).getNama_barang() +
@@ -412,33 +461,32 @@ public class HomePageController implements TableMethod {
 //                                    " " + listOfItem.get(i).getHarga_jual());
 //                        }
 //                        table_view_awal.setItems(FXCollections.observableArrayList());
-                    }
-                    case "Kategori" -> {
-                        Kategori kategori = new Kategori();
-                        ObservableList<Kategori> listOfCategory = FXCollections.observableArrayList();
-                        kategori.setId_kategori(rs.getInt("category_id"));
-                        kategori.setNama_kategori(rs.getString("category_name"));
-                        listOfCategory.add(kategori);
+                }
+                case "Kategori" -> {
+                    Kategori kategori = new Kategori();
+                    ObservableList<Kategori> listOfCategory = FXCollections.observableArrayList();
+                    kategori.setId_kategori(rs.getInt("category_id"));
+                    kategori.setNama_kategori(rs.getString("category_name"));
+                    listOfCategory.add(kategori);
 //                        for (int i = 0; i < listOfCategory.size(); i++) {
 //                            System.out.println(listOfCategory.get(i).getId_kategori() +
 //                                    " " + listOfCategory.get(i).getNama_kategori());
 //                        }
 //                        table_view_awal.setItems(FXCollections.observableArrayList());
-                    }
-                    case "Anggota" -> {
-                        Anggota anggota = new Anggota();
-                        ObservableList<Anggota> listOfExecutives = FXCollections.observableArrayList();
-                        anggota.setId_anggota(rs.getInt("id_anggota"));
-                        anggota.setNama_anggota(rs.getString("nama_anggota"));
-                        listOfExecutives.add(anggota);
+                }
+                case "Anggota" -> {
+                    Anggota anggota = new Anggota();
+                    ObservableList<Anggota> listOfExecutives = FXCollections.observableArrayList();
+                    anggota.setId_anggota(rs.getInt("id_anggota"));
+                    anggota.setNama_anggota(rs.getString("nama_anggota"));
+                    listOfExecutives.add(anggota);
 //                        for (int i = 0; i < listOfExecutives.size(); i++) {
 //                            System.out.println(listOfExecutives.get(i).getId_anggota() +
 //                                    " " + listOfExecutives.get(i).getNama_anggota());
 //                        }
 //                        table_view_anggota.setItems(FXCollections.observableArrayList());
-                    }
                 }
-            } return data;
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -459,20 +507,19 @@ public class HomePageController implements TableMethod {
 //        table_view.setVisible(false);
         try {
             switch (table) {
-                case "Department" -> {
+                case "Departments" -> {
                     String SQL_dept = """
-                INSERT INTO public."departments" (id_department, name_department)
-                VALUES (?, ?)
-                """;
+                        INSERT INTO departments
+                        VALUES (?, ?, ?)
+                        """;
                     st = con.prepareStatement(SQL_dept);
 
-                    System.out.println("id department: ");
-                    int id_department = Integer.parseInt(input.nextLine());
-                    st.setString(1,textField1.getText());
-                    System.out.println("nama department: ");
-                    String name_department = input.nextLine();
+                    st.setInt(1, Integer.parseInt(textField1.getText()));
                     st.setString(2,textField2.getText());
+                    st.setString(3, textField3.getText());
 
+                    st.execute();
+                    System.out.println("INSERTED");
                     view_table(table);
                 }
                 case "Role" -> {}
@@ -482,7 +529,6 @@ public class HomePageController implements TableMethod {
                 case "Kategori" -> {}
                 case "Transaksi" -> {}
             }
-            rs = st.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -525,21 +571,18 @@ public class HomePageController implements TableMethod {
         con = DBConnection.getConnection();
         try {
             switch (table) {
-                case "Department" -> {
-                    String update_dept_query = "UPDATE Department SET name_department = ? WHERE id_department = ?";
+                case "Departments" -> {
+                    String update_dept_query = "UPDATE Departments SET id_department = ?, name_department = ?, jobdesc = ? WHERE id_department = ?";
                     st = con.prepareStatement(update_dept_query);
 
-                    System.out.println("id department: ");
-                    System.out.println("nama department: ");
+                    System.out.println(label1.getText());
+                    st.setInt(1, Integer.parseInt(textField1.getText()));
+                    st.setString(2, textField2.getText());
+                    st.setString(3, textField3.getText());
+                    st.setInt(4,id_selected);
 
-                    st.setString(1, label1.getText());
-                    st.setString(2, label2.getText());
                     st.execute();
 
-                    int rowsUpdated = st.executeUpdate();
-                    if (rowsUpdated > 0) {
-                        System.out.println("Department updated successfully.");
-                    }
 
                     view_table(table);
                 }
@@ -554,21 +597,6 @@ public class HomePageController implements TableMethod {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new SQLException("Error updating the table: " + e.getMessage());
-        } finally {
-            if (st != null) {
-                try {
-                    st.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 
@@ -578,18 +606,12 @@ public class HomePageController implements TableMethod {
         con = DBConnection.getConnection();
         try {
             switch (table) {
-                case "Department" -> {
+                case "Departments" -> {
 
                     String SQL_dept = "DELETE FROM " + table + " WHERE id_department = ?";
                     st = con.prepareStatement(SQL_dept);
-
-                    System.out.println("id department: ");
-                    int id_department = Integer.parseInt(input.nextLine());
-                    System.out.println("nama department: ");
-                    String name_department = input.nextLine();
-
-                    st.setString(1, String.valueOf(id_department));
-                    st.setString(2, name_department);
+                    st.setInt(1,id_selected);
+                    st.execute();
 
                     view_table(table);
                 }
@@ -600,7 +622,6 @@ public class HomePageController implements TableMethod {
                 case "Kategori" -> {}
                 case "Transaksi" -> {}
             }
-            rs = st.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="700.0" prefHeight="650.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.koperasi.proyekpbo.HomePageController">
    <children>
-      <ComboBox fx:id="drop_down_menu" layoutX="28.0" layoutY="24.0" prefHeight="25.0" prefWidth="200.0" promptText="Pilih Tabel" style="-fx-border-color: darkgrey; -fx-background-color: lighgrey;" visibleRowCount="7" />
+      <ComboBox fx:id="drop_down_menu" layoutX="28.0" layoutY="24.0" prefHeight="25.0" prefWidth="200.0" promptText="Pilih Tabel" style="-fx-border-color: darkgrey; -fx-background-color: lightgrey;" visibleRowCount="7" />
       <Separator prefHeight="4.0" prefWidth="660.0" />
       <Button fx:id="insert_button" layoutX="477.0" layoutY="492.0" mnemonicParsing="false" onAction="#onInsertClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-border-color: darkgrey; -fx-background-color: #29A746;" text="insert" textFill="WHITE">
          <font>
@@ -45,7 +45,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="table_view_awal" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0">
+      <TableView fx:id="table_view_awal" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
          <columns>
             <TableColumn prefWidth="220.0" text=" " />
             <TableColumn prefWidth="220.0" text=" " />
@@ -53,7 +53,7 @@
             <TableColumn prefWidth="220.0" text=" " />
          </columns>
       </TableView>
-      <TableView fx:id="table_view_dept" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
+      <TableView fx:id="table_view_dept" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0">
          <columns>
             <TableColumn fx:id="id_department_column" prefWidth="220.0" text="id_department" />
             <TableColumn fx:id="name_department_column" prefWidth="220.0" text="name_department" />
@@ -62,10 +62,9 @@
       </TableView>
       <TableView fx:id="table_view_role" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
          <columns>
-            <TableColumn prefWidth="165.0" text="id_role" />
-            <TableColumn prefWidth="165.0" text="name_role" />
-            <TableColumn prefWidth="165.0" text="date_start" />
-            <TableColumn prefWidth="165.0" text="date_end" />
+            <TableColumn fx:id="id_role_column" prefWidth="165.0" text="id_role" />
+            <TableColumn fx:id="name_role_column" prefWidth="165.0" text="name_role" />
+            <TableColumn fx:id="id_department_role_column" prefWidth="165.0" text="date_start" />
          </columns>
       </TableView>
       <TableView fx:id="table_view_emp" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">

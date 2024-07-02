@@ -1,7 +1,7 @@
 package com.koperasi.proyekpbo;
 
-public class Department implements DataType{
-    private int id_department;
+public class Department {
+    private Integer id_department;
     private String name_department;
     private String jobdesc;
 
@@ -15,8 +15,8 @@ public class Department implements DataType{
     public Department() {
     }
 
-    @Override
-    public int getId() {
+
+    public int getId_department() {
         return id_department;
     }
 
