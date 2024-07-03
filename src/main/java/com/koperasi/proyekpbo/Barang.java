@@ -1,23 +1,23 @@
 package com.koperasi.proyekpbo;
 
-public class Barang implements DataType{
+public class Barang {
     private int id_barang;
     private String nama_barang;
-    private int harga_pokok;
-    private int harga_jual;
+    private int stock_barang;
+    private double harga_pokok;
+    private double harga_jual;
+    private int id_kategori;
 
-    public Barang(int id_stock, String nama_barang, int harga_pokok, int harga_jual) {
-        this.id_barang = id_stock;
+    public Barang(int id_barang, String nama_barang, int stock_barang, double harga_pokok, double harga_jual, int id_kategori) {
+        this.id_barang = id_barang;
         this.nama_barang = nama_barang;
+        this.stock_barang = stock_barang;
         this.harga_pokok = harga_pokok;
         this.harga_jual = harga_jual;
-    }
-    public Barang () {
-
+        this.id_kategori = id_kategori;
     }
 
-    @Override
-    public int getId() {
+    public int getId_barang() {
         return id_barang;
     }
 
@@ -33,19 +33,35 @@ public class Barang implements DataType{
         this.nama_barang = nama_barang;
     }
 
-    public int getHarga_pokok() {
+    public int getStock_barang() {
+        return stock_barang;
+    }
+
+    public void setStock_barang(int stock_barang) {
+        this.stock_barang = stock_barang;
+    }
+
+    public double getHarga_pokok() {
         return harga_pokok;
     }
 
-    public void setHarga_pokok(int harga_pokok) {
+    public void setHarga_pokok(double harga_pokok) {
         this.harga_pokok = harga_pokok;
     }
 
-    public int getHarga_jual() {
+    public double getHarga_jual() {
         return harga_jual;
     }
 
-    public void setHarga_jual(int harga_jual) {
+    public void setHarga_jual(double harga_jual) {
         this.harga_jual = harga_jual;
+    }
+
+    public int getId_kategori() {
+        return id_kategori;
+    }
+
+    public void setId_kategori(int id_kategori) {
+        this.id_kategori = id_kategori;
     }
 }

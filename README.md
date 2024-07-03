@@ -5,3 +5,5 @@ https://docs.github.com/en/desktop/making-changes-in-a-branch/committing-and-rev
 
 Ketentuan proyek:
 https://docs.google.com/document/d/1Rcp88RCM2fSIBle6I4Cq0DPnNHoaXMMtb6xVfH0LRcs/edit
+
+Versi JDK 22

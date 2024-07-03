@@ -1,59 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="700.0" prefHeight="650.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.koperasi.proyekpbo.HomePageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="700.0" prefHeight="800.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.koperasi.proyekpbo.HomePageController">
    <children>
-      <ComboBox fx:id="drop_down_menu" layoutX="28.0" layoutY="24.0" prefHeight="25.0" prefWidth="200.0" promptText="Pilih Tabel" style="-fx-border-color: darkgrey; -fx-background-color: lightgrey;" visibleRowCount="7" />
+      <ComboBox fx:id="drop_down_menu" layoutX="28.0" layoutY="24.0" prefHeight="25.0" prefWidth="200.0" promptText="Pilih Tabel" style="-fx-border-color: darkgrey; -fx-background-color: lightgrey;" visibleRowCount="9" />
       <Separator prefHeight="4.0" prefWidth="660.0" />
-      <Button fx:id="insert_button" layoutX="477.0" layoutY="492.0" mnemonicParsing="false" onAction="#onInsertClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-border-color: darkgrey; -fx-background-color: #29A746;" text="insert" textFill="WHITE">
+      <Button fx:id="insert_button" layoutX="477.0" layoutY="489.0" mnemonicParsing="false" onAction="#onInsertClicked" prefHeight="60.0" prefWidth="200.0" style="-fx-border-color: darkgrey; -fx-background-color: #29A746;" text="insert" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font size="22.0" />
          </font></Button>
-      <Button fx:id="update_button" layoutX="477.0" layoutY="545.0" mnemonicParsing="false" onAction="#onUpdateClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-border-color: darkgrey; -fx-background-color: #FDC108;" text="update">
+      <Button fx:id="update_button" layoutX="477.0" layoutY="566.0" mnemonicParsing="false" onAction="#onUpdateClicked" prefHeight="60.0" prefWidth="200.0" style="-fx-border-color: darkgrey; -fx-background-color: #FDC108;" text="update">
          <font>
-            <Font size="18.0" />
+            <Font size="22.0" />
          </font></Button>
-      <Button fx:id="delete_button" layoutX="477.0" layoutY="597.0" mnemonicParsing="false" onAction="#onDeleteClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-border-color: darkgrey; -fx-background-color: #D93643;" text="delete" textFill="WHITE">
+      <Button fx:id="delete_button" layoutX="477.0" layoutY="643.0" mnemonicParsing="false" onAction="#onDeleteClicked" prefHeight="60.0" prefWidth="200.0" style="-fx-border-color: darkgrey; -fx-background-color: #D93643;" text="delete" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font size="22.0" />
          </font></Button>
-      <Label fx:id="label1" layoutX="31.0" layoutY="497.0" prefHeight="17.0" prefWidth="105.0" text="" />
-      <Label fx:id="label2" layoutX="29.0" layoutY="531.0" prefHeight="17.0" prefWidth="105.0" text="" />
-      <Label fx:id="label3" layoutX="28.0" layoutY="566.0" prefHeight="17.0" prefWidth="105.0" text="" />
-      <Label fx:id="label4" layoutX="29.0" layoutY="599.0" prefHeight="17.0" prefWidth="105.0" text="" />
-      <Label fx:id="label5" layoutX="29.0" layoutY="631.0" prefHeight="17.0" prefWidth="105.0" text="" />
-      <TextField fx:id="textField1" layoutX="158.0" layoutY="494.0" prefHeight="25.0" prefWidth="300.0" visible="false" />
-      <TextField fx:id="textField2" layoutX="158.0" layoutY="528.0" prefHeight="25.0" prefWidth="300.0" visible="false" />
-      <TextField fx:id="textField3" layoutX="158.0" layoutY="563.0" prefHeight="25.0" prefWidth="300.0" visible="false" />
-      <TextField fx:id="textField4" layoutX="158.0" layoutY="597.0" prefHeight="6.0" prefWidth="300.0" visible="false" />
-      <TextField fx:id="textField5" layoutX="158.0" layoutY="631.0" prefHeight="6.0" prefWidth="300.0" visible="false" />
-      <Button fx:id="exit_button" layoutX="477.0" layoutY="648.0" mnemonicParsing="false" onAction="#onExitClicked" prefHeight="26.0" prefWidth="200.0" style="-fx-border-color: darkgrey;" text="exit">
+      <Label fx:id="label1" layoutX="29.0" layoutY="494.0" prefHeight="17.0" prefWidth="120.0" text=" " />
+      <Label fx:id="label2" layoutX="29.0" layoutY="528.0" prefHeight="17.0" prefWidth="120.0" text=" " />
+      <Label fx:id="label3" layoutX="29.0" layoutY="562.0" prefHeight="17.0" prefWidth="120.0" text=" " />
+      <Label fx:id="label4" layoutX="29.0" layoutY="596.0" prefHeight="17.0" prefWidth="120.0" text=" " />
+      <Label fx:id="label5" layoutX="29.0" layoutY="630.0" prefHeight="17.0" prefWidth="120.0" text=" " />
+      <Label fx:id="label6" layoutX="29.0" layoutY="664.0" prefHeight="17.0" prefWidth="120.0" text=" " />
+      <Label fx:id="label7" layoutX="29.0" layoutY="698.0" prefHeight="17.0" prefWidth="120.0" text=" " />
+      <Label fx:id="label8" layoutX="29.0" layoutY="732.0" prefHeight="17.0" prefWidth="120.0" text=" " />
+      <TextField fx:id="textField1" layoutX="158.0" layoutY="494.0" prefHeight="25.0" prefWidth="200.0" visible="false" />
+      <TextField fx:id="textField2" layoutX="158.0" layoutY="528.0" prefHeight="25.0" prefWidth="200.0" visible="false" />
+      <TextField fx:id="textField3" layoutX="158.0" layoutY="562.0" prefHeight="25.0" prefWidth="200.0" visible="false" />
+      <TextField fx:id="textField4" layoutX="158.0" layoutY="596.0" prefHeight="6.0" prefWidth="200.0" visible="false" />
+      <TextField fx:id="textField5" layoutX="158.0" layoutY="630.0" prefHeight="6.0" prefWidth="200.0" visible="false" />
+      <TextField fx:id="textField6" layoutX="158.0" layoutY="664.0" prefHeight="6.0" prefWidth="200.0" visible="false" />
+      <TextField fx:id="textField7" layoutX="158.0" layoutY="698.0" prefHeight="6.0" prefWidth="200.0" visible="false" />
+      <TextField fx:id="textField8" layoutX="158.0" layoutY="732.0" prefHeight="6.0" prefWidth="200.0" visible="false" />
+      <Button fx:id="exit_button" layoutX="477.0" layoutY="719.0" mnemonicParsing="false" onAction="#onExitClicked" prefHeight="60.0" prefWidth="200.0" style="-fx-border-color: darkgrey;" text="exit">
          <font>
-            <Font size="14.0" />
+            <Font size="22.0" />
          </font></Button>
-      <Label fx:id="pesan_awal" layoutX="34.0" layoutY="557.0" prefHeight="40.0" prefWidth="420.0" text="*Mohon untuk pilih tabel terlebih dahulu untuk edit data*">
+      <Label fx:id="pesan_awal" layoutX="29.0" layoutY="601.0" prefHeight="40.0" prefWidth="420.0" text="*Mohon untuk pilih tabel terlebih dahulu untuk edit data*">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="table_view_awal" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
+      <TableView fx:id="table_view_awal" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="true">
          <columns>
-            <TableColumn prefWidth="220.0" text=" " />
-            <TableColumn prefWidth="220.0" text=" " />
-            <TableColumn prefWidth="220.0" text=" " />
             <TableColumn prefWidth="220.0" text=" " />
          </columns>
       </TableView>
-      <TableView fx:id="table_view_dept" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0">
+      <TableView fx:id="table_view_dept" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
          <columns>
             <TableColumn fx:id="id_department_column" prefWidth="220.0" text="id_department" />
             <TableColumn fx:id="name_department_column" prefWidth="220.0" text="name_department" />
@@ -62,44 +59,67 @@
       </TableView>
       <TableView fx:id="table_view_role" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
          <columns>
-            <TableColumn fx:id="id_role_column" prefWidth="165.0" text="id_role" />
-            <TableColumn fx:id="name_role_column" prefWidth="165.0" text="name_role" />
-            <TableColumn fx:id="id_department_role_column" prefWidth="165.0" text="date_start" />
+            <TableColumn fx:id="id_role_column" prefWidth="220.0" text="id_role" />
+            <TableColumn fx:id="name_role_column" prefWidth="220.0" text="name_role" />
+            <TableColumn fx:id="id_department_role_column" prefWidth="220.0" text="id_department" />
          </columns>
       </TableView>
       <TableView fx:id="table_view_emp" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
          <columns>
-            <TableColumn prefWidth="330.0" text="id_pegawai" />
-            <TableColumn prefWidth="330.0" text="nama_pegawai" />
+            <TableColumn fx:id="id_pegawai_column" prefWidth="165.0" text="id_pegawai" />
+            <TableColumn fx:id="nama_pegawai_column" prefWidth="165.0" text="nama_pegawai" />
+            <TableColumn fx:id="id_role_pegawai_column" prefWidth="165.0" text="id_role" />
+            <TableColumn fx:id="id_history_employee_pegawai_column" prefWidth="165.0" text="id_history_employee" />
          </columns>
       </TableView>
       <TableView fx:id="table_view_anggota" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
          <columns>
-            <TableColumn prefWidth="330.0" text="id_anggota" />
-            <TableColumn prefWidth="330.0" text="nama_anggota" />
+            <TableColumn fx:id="id_anggota_column" prefWidth="165.0" text="id_anggota" />
+            <TableColumn fx:id="nama_anggota_column" prefWidth="165.0" text="nama_anggota" />
+            <TableColumn fx:id="id_role_anggota_column" prefWidth="165.0" text="id_role" />
+            <TableColumn fx:id="id_history_executive_anggota_column" prefWidth="165.0" text="id_history_executive" />
          </columns>
       </TableView>
       <TableView fx:id="table_view_barang" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
          <columns>
-            <TableColumn prefWidth="132.0" text="id_barang" />
-            <TableColumn prefWidth="132.0" text="nama_barang" />
-            <TableColumn prefWidth="132.0" text="stock_barang" />
-            <TableColumn prefWidth="132.0" text="harga_barang" />
-            <TableColumn prefWidth="132.0" text="harga_jual" />
+            <TableColumn fx:id="id_barang_column" prefWidth="110.0" text="id_barang" />
+            <TableColumn fx:id="nama_barang_column" prefWidth="110.0" text="nama_barang" />
+            <TableColumn fx:id="stock_barang_column" prefWidth="110.0" text="stock_barang" />
+            <TableColumn fx:id="harga_pokok_barang_column" prefWidth="110.0" text="harga_pokok" />
+            <TableColumn fx:id="harga_jual_barang_column" prefWidth="110.0" text="harga_jual" />
+            <TableColumn fx:id="id_kategori_barang_column" prefWidth="110.0" text="id_kategori" />
          </columns>
       </TableView>
       <TableView fx:id="table_view_kategori" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
          <columns>
-            <TableColumn prefWidth="330.0" text="id_kategori" />
-            <TableColumn prefWidth="330.0" text="nama_kategori" />
+            <TableColumn fx:id="id_kategori_column" prefWidth="330.0" text="id_kategori" />
+            <TableColumn fx:id="nama_kategori_column" prefWidth="330.0" text="nama_kategori" />
          </columns>
       </TableView>
       <TableView fx:id="table_view_trans" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
          <columns>
-            <TableColumn prefWidth="165.0" text="id_transaksi" />
-            <TableColumn prefWidth="165.0" text="tanggal_transaksi" />
-            <TableColumn prefWidth="165.0" text="nama_seller" />
-            <TableColumn prefWidth="165.0" text="profit_total" />
+            <TableColumn fx:id="id_transaksi_column" prefWidth="82.5" text="id_transaksi" />
+            <TableColumn fx:id="tanggal_transaksi_column" prefWidth="82.5" text="tanggal_transaksi" />
+            <TableColumn fx:id="name_seller_transaksi_column" prefWidth="82.5" text="nama_seller" />
+            <TableColumn fx:id="id_barang_transaksi_column" prefWidth="82.5" text="id_barang" />
+            <TableColumn fx:id="total_jual_transaksi_column" prefWidth="82.5" text="total_jual" />
+            <TableColumn fx:id="profit_total_transaksi_column" prefWidth="82.5" text="profit_total" />
+            <TableColumn fx:id="kuantitas_jual_transaksi_column" prefWidth="82.5" text="kuantitas_jual" />
+            <TableColumn fx:id="id_role_transaksi_column" prefWidth="82.5" text="id_role" />
+         </columns>
+      </TableView>
+      <TableView fx:id="table_view_hist_emp" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
+         <columns>
+            <TableColumn fx:id="id_history_employee_column" prefWidth="220.0" text="id_history_employee" />
+            <TableColumn fx:id="date_start_employee_column" prefWidth="220.0" text="date_start_employee" />
+            <TableColumn fx:id="date_end_employee_column" prefWidth="220.0" text="date_end_employee" />
+         </columns>
+      </TableView>
+      <TableView fx:id="table_view_hist_anggota" layoutX="22.0" layoutY="78.0" prefHeight="400.0" prefWidth="660.0" visible="false">
+         <columns>
+            <TableColumn fx:id="id_history_anggota_column" prefWidth="220.0" text="id_history_anggota" />
+            <TableColumn fx:id="date_start_anggota_column" prefWidth="220.0" text="date_start_anggota" />
+            <TableColumn fx:id="date_end_anggota_column" prefWidth="220.0" text="date_end_anggota" />
          </columns>
       </TableView>
    </children>
